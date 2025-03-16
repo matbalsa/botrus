@@ -1,140 +1,423 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    position: relative;
-    overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortexia Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/qs3kuU7vhrMImhUi-generated_image.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            animation: slide 10s linear infinite;
+        }
+        @keyframes slide {
+            0% { left: -300px; }
+            100% { left: 100%; }
+        }
+        .top-section {
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/dDcGtZ6rVym6EBep-generated_image.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 20px 0;
+        }
+        .game-list, .sponsor-player-top {
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .recap {
+            margin: 20px;
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/TAMz1OvUk0sAajAO-generated_image.jpg') no-repeat center center;
+            background-size: 80%;
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .recap .recap-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .recap .score p, .recap .upload button {
+            font-size: 20px;
+        }
+        .sponsor-player {
+            margin: 20px;
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/YYON2I5lQdnZMHkp-generated_image.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .middle-section {
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/YYON2I5lQdnZMHkp-generated_image.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        .about-us, .player-profile {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .team-chat, .club-section, .terms-modal, .login-modal {
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .team-chat {
+            background: url('https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/qs3kuU7vhrMImhUi-generated_image.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #0066cc;
+        }
+        .about-us .content, .player-profile p {
+            text-align: left;
+            max-width: 600px;
+            margin: 10px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .terms-modal, .login-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            z-index: 10;
+            text-align: left;
+        }
+        .terms-modal p, .login-modal p {
+            font-size: 12px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+        .sponsor-player {
+            padding: 30px;
+        }
+        .sponsor-player img {
+            max-width: 300px;
+            margin: 15px auto;
+            display: block;
+        }
+        .sponsor-player p {
+            margin: 15px 0;
+        }
+        .sponsor-player a, .club-section a, .player-profile a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+        .sponsor-player a:hover, .club-section a:hover, .player-profile a:hover {
+            color: #004d99;
+        }
+        .team-chat textarea {
+            width: 80%;
+            height: 50px;
+            margin: 10px;
+        }
+        .team-chat div {
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            padding: 5px;
+        }
+        .club-section a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .club-section a:hover {
+            background-color: #004d99;
+        }
+        .club-section img {
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+        .player-profile img {
+            max-width: 200px;
+            margin: 10px auto;
+            display: block;
+        }
+        .game-list .games-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .game-list .games-list {
+            width: 60%;
+            text-align: left;
+        }
+        .game-list .map-container {
+            width: 35%;
+            text-align: center;
+        }
+        .game-list img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .game-list p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .recap .recap-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .recap .score {
+            margin-right: 40px;
+        }
+        .recap .upload {
+            margin-left: 40px;
+        }
+        .sponsor-player-top {
+            height: 25%;
+        }
+        .sponsor-player-content {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+<body>
+    <div class="top-section">
+        <h1>Vortexia Solutions</h1>
+        <button class="login-btn" onclick="showLogin()">Login</button>
+        <div class="game-list">
+            <h2>Upcoming Games</h2>
+            <div class="games-container">
+                <div class="games-list">
+                    <ul id="games"></ul>
+                </div>
+                <div class="map-container">
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?center=Field+A,Sydney,Australia&zoom=14&size=200x200&key=API_KEY" alt="Venue Map">
+                    <p>Address: 123 Field St, Sydney NSW 2000</p>
+                </div>
+            </div>
+        </div>
+        <div class="recap">
+            <h2>Game Recap</h2>
+            <div class="recap-container">
+                <div class="score">
+                    <p id="score">Final Score: 5 - 3</p>
+                    <p id="message">Winner: Tigers!</p>
+                    <p id="sponsor">Sponsored by: Joe's Sports Shop</p>
+                </div>
+                <div class="upload">
+                    <button onclick="showTerms()">Upload Video</button>
+                </div>
+            </div>
+        </div>
+        <div class="sponsor-player-top"></div>
+    </div>
+    <div class="sponsor-player">
+        <div class="sponsor-player-content">
+            <h2>Sponsor & Player of the Day</h2>
+            <img id="sponsorImg" src="https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/qs3kuU7vhrMImhUi-generated_image.jpg" alt="Sponsor Logo">
+            <p id="sponsorOffer">Get 10% off at Joe's Sports Shop!</p>
+            <p><strong>Tommy Tiger</strong> - March 15: Scored 3 goals!</p>
+            <img src="https://via.placeholder.com/300x300.png?text=Prize:+Sports+Ball" alt="Prize Image">
+            <p>Prize: A brand new sports ball from Joe’s Sports Shop!</p>
+            <p><a href="https://example.com/joes-sports-shop/free-item" id="sponsorLink">Claim your free item here!</a></p>
+        </div>
+    </div>
+    <div class="middle-section">
+        <div class="about-us">
+            <h2>About Us</h2>
+            <div class="content">
+                <p>MyClubCRM was created to make managing sports clubs and associations easy and hassle-free. With an understanding that grassroots sports associations and clubs are predominantly run by volunteers, MyClubCRM was designed to be simple, time-efficient, and intuitive, empowering volunteers to run their clubs with ease.</p>
+                <p>We believe grassroots sports clubs and associations deserve access to professional management, marketing, sales, and communication tools—why should these be reserved for the big leagues? By offering these solutions, MyClubCRM helps community sports clubs grow and prosper.</p>
+                <p>We hope you and your sports club enjoy using MyClubCRM as much as we enjoyed creating it for you!</p>
+            </div>
+        </div>
+        <div class="player-profile">
+            <h2>Player Profile Section</h2>
+            <p>Upload your photo (Number: 7) for AI highlight reel generation:</p>
+            <input type="file" id="playerPhoto" accept="image/*">
+            <img id="playerImg" src="https://via.placeholder.com/200x200.png?text=Player+7" alt="Player Photo">
+            <p><a href="#" id="downloadLink" style="display:none">Download Highlight Reel</a></p>
+        </div>
+    </div>
+    <div class="team-chat">
+        <h2>Team Chat</h2>
+        <div id="teamChatBox"></div>
+        <textarea id="teamChatInput" placeholder="Team message..."></textarea>
+        <button onclick="sendTeamMessage()">Send</button>
+    </div>
+    <div class="club-section">
+        <h2>Club</h2>
+        <img src="https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/jqlsCPxKT7t6tzES-generated_image.jpg" alt="Club Logo">
+        <a href="mailto:club@vortexiasolutions.com?subject=Club%20Inquiry">Contact Us</a>
+        <a href="https://example.com/club-events">Events</a>
+        <a href="https://example.com/club-join">Join Now</a>
+    </div>
+    <div class="terms-modal" id="termsModal">
+        <h2>Video Upload Terms and Conditions</h2>
+        <p>By uploading a video, you confirm: (1) You have permission from all individuals featured, including parental consent for anyone under 18, per Australia's Privacy Act 1988 and Online Safety Act 2021. (2) You are aware of laws regarding child privacy and image-based content, and the video complies with these laws. (3) You take full legal responsibility for the content. Vortexia Solutions and its sponsors are not liable for any breaches of law or disputes arising from your upload.</p>
+        <button onclick="acceptTerms()">Accept</button>
+        <button onclick="hideTerms()">Cancel</button>
+    </div>
+    <div class="login-modal" id="loginModal">
+        <h2>Login & Terms</h2>
+        <p>Username: <input type="text" id="username"></p>
+        <p>Password: <input type="password" id="password"></p>
+        <p>By logging into Vortexia Solutions, you agree that: (1) All intellectual property, including software, design, and content, is owned by Vortexia Solutions Pty Ltd and may not be copied, reproduced, modified, reverse-engineered, or distributed without written consent; (2) You grant Vortexia Solutions, its affiliates, sponsors, and owners a perpetual, royalty-free, worldwide license to use, store, process, and display your submitted data (e.g., photos, videos, chat messages) for app functionality (e.g., AI-generated highlight reels), promotional purposes, or service enhancement, in compliance with Australia’s Privacy Act 1988; (3) For images of minors under 18, you warrant parental consent has been obtained per the Online Safety Act 2021, accepting full liability for breaches; (4) Data may be shared with sponsors for prize fulfillment or marketing, and retained indefinitely unless deletion is requested via contact@vortexiasolutions.com, subject to legal retention obligations; (5) Unauthorized use of the app incurs liability for damages under Australian law.</p>
+        <button onclick="login()">Login</button>
+        <button onclick="hideLogin()">Cancel</button>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <script>
+        async function fetchGames() {
+            const response = await fetch('https://example.com/api/games');
+            const games = await response.json();
+            return games;
+        }
+        const fallbackGames = [
+            { date: "March 15, 2025", opponent: "Tigers", location: "Field A" },
+            { date: "March 22, 2025", opponent: "Lions", location: "Court B" }
+        ];
+        const gameList = document.getElementById("games");
+        fetchGames().then(games => {
+            games.forEach(game => {
+                const li = document.createElement("li");
+                li.textContent = `${game.date} vs ${game.opponent} at ${game.location}`;
+                gameList.appendChild(li);
+            });
+        }).catch(() => {
+            fallbackGames.forEach(game => {
+                const li = document.createElement("li");
+                li.textContent = `${game.date} vs ${game.opponent} at ${game.location}`;
+                gameList.appendChild(li);
+            });
+        });
 
-.top-section {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/header-bg.jpg');
-    background-size: cover;
-    padding: 20px 0;
-    color: white;
-}
+        const sponsors = [
+            { img: "https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/qs3kuU7vhrMImhUi-generated_image.jpg", offer: "Get 10% off at Joe's Sports Shop!", link: "https://example.com/joes-sports-shop/free-item" },
+            { img: "https://assets.grok.com/users/2e488a63-c751-437d-a9eb-657272eee963/qs3kuU7vhrMImhUi-generated_image.jpg", offer: "Free coffee with any meal at Cafe Kick!", link: "https://example.com/cafe-kick/free-item" }
+        ];
+        let sponsorIndex = 0;
+        function rotateSponsor() {
+            const img = document.getElementById("sponsorImg");
+            const offer = document.getElementById("sponsorOffer");
+            const link = document.getElementById("sponsorLink");
+            img.src = sponsors[sponsorIndex].img;
+            offer.textContent = sponsors[sponsorIndex].offer;
+            link.href = sponsors[sponsorIndex].link;
+            sponsorIndex = (sponsorIndex + 1) % sponsors.length;
+        }
+        setInterval(rotateSponsor, 5000);
+        rotateSponsor();
 
-.game-list, .sponsor-player-top {
-    margin: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 5px;
-    position: relative;
-}
+        if ("Notification" in window && Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    setTimeout(() => {
+                        new Notification("Game Reminder", { body: "Tigers vs Lions tomorrow at Field A!" });
+                    }, 5000);
+                }
+            });
+        }
 
-.recap {
-    margin: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 5px;
-}
+        const teamChatBox = document.getElementById("teamChatBox");
+        function sendTeamMessage() {
+            const input = document.getElementById("teamChatInput");
+            const message = input.value.trim();
+            if (message) {
+                const p = document.createElement("p");
+                p.textContent = `Team: ${message}`;
+                teamChatBox.appendChild(p);
+                teamChatBox.scrollTop = teamChatBox.scrollHeight;
+                input.value = "";
+            }
+        }
 
-.login-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #0066cc;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        document.getElementById("playerPhoto").addEventListener("change", function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("playerImg").src = e.target.result;
+                    document.getElementById("downloadLink").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-button {
-    padding: 12px 24px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.games-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.games-list {
-    flex: 2;
-    text-align: left;
-}
-
-.map-container {
-    flex: 1;
-}
-
-.map-container img {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-/* Modals */
-.terms-modal, .login-modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    max-width: 500px;
-    width: 90%;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-/* Team Chat */
-.team-chat {
-    margin: 20px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-}
-
-#teamChatBox {
-    height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-#teamChatInput {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .games-container {
-        flex-direction: column;
-    }
-    
-    .map-container {
-        width: 100%;
-    }
-}
+        function showTerms() {
+            document.getElementById("termsModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function hideTerms() {
+            document.getElementById("termsModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+        function acceptTerms() {
+            hideTerms();
+            alert("Video uploaded! (Simulation)");
+        }
+        function showLogin() {
+            document.getElementById("loginModal").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function hideLogin() {
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username && password) {
+                alert("Logged in successfully! (Simulation)");
+                hideLogin();
+            } else {
+                alert("Please enter username and password.");
+            }
+        }
+    </script>
+</body>
+</html>
