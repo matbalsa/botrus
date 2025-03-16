@@ -1,56 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youth Sports Hub</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-blue-600">Youth Sports Hub</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <a href="#" class="text-gray-700 hover:text-blue-600">Schedule</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600">Teams</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600">Sponsors</a>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Sign In</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botrus Sports Hub</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow-x: hidden;
+}
+body::before {
+    content: "B";  /* Changed from T to B for Botrus */
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background-color: #0066cc;
+    color: white;
+    font-size: 100px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    animation: slide 10s linear infinite;
+}
+@keyframes slide {
+    0% { left: -300px; }
+    100% { left: 100%; }
+}
+.nav-bar {
+    background-color: #333;
+    padding: 15px;
+    color: white;
+}
+.nav-bar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+.game-list, .recap, .about-us {
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #45a049;
+}
+.about-us p {
+    text-align: left;
+    max-width: 800px;
+    margin: 15px auto;
+    line-height: 1.6;
+}
+</style>
+<body>
+<div class="nav-bar">
+    <a href="#home">Home</a>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</div>
 
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        <section class="bg-blue-600 text-white rounded-lg p-8 text-center mb-8">
-            <h1 class="text-4xl font-bold mb-4">Welcome to Youth Sports Hub</h1>
-            <p class="text-xl">Connecting young athletes, families, and communities</p>
-        </section>
+<h1>Botrus Sports Hub</h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-2xl font-semibold mb-4">Upcoming Games</h2>
-                <div class="space-y-4">
-                    <div class="border rounded-lg p-4">
-                        <p class="font-medium">vs Eagles</p>
-                        <p class="text-gray-600">Central Park Field</p>
-                        <p class="text-gray-600">Saturday, 2:00 PM</p>
-                    </div>
-                </div>
-            </div>
+<div class="game-list">
+    <h2>Upcoming Games</h2>
+    <ul id="games" style="list-style: none; padding: 0;"></ul>
+    <button onclick="uploadVideo()">Upload Video</button>
+</div>
 
-            <div class="bg-white rounded-lg shadow p-6">
-                <h2 class="text-2xl font-semibold mb-4">Team News</h2>
-                <div class="space-y-4">
-                    <div class="border rounded-lg p-4">
-                        <p class="font-medium">Great practice today!</p>
-                        <p class="text-gray-600">Coach Smith</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<div class="recap">
+    <h2>Game Recap</h2>
+    <p id="score">Final Score: 5 - 3</p>
+    <p id="message">Winner: Tigers!</p>
+    <p id="sponsor">Sponsored by: Local Sports Shop</p>
+</div>
+
+<div class="about-us">
+    <h2>About Us</h2>
+    <p>Botrus Sports Hub was created to make managing sports clubs and associations easy and hassle-free. We understand that grassroots sports associations and clubs are predominantly run by volunteers, which is why our platform is designed to be simple, time-efficient, and intuitive.</p>
+    <p>Our platform connects players, parents, coaches, and local businesses into a vibrant community hub. From game scheduling to video highlights, we provide all the tools needed to create an engaging sports community.</p>
+    <p>Join us in building a stronger, more connected sports community!</p>
+</div>
+
+<script>
+const games = [
+    { date: "March 15, 2025", opponent: "Tigers", location: "Field A", time: "2:00 PM" },
+    { date: "March 22, 2025", opponent: "Lions", location: "Court B", time: "3:30 PM" },
+    { date: "March 29, 2025", opponent: "Eagles", location: "Field C", time: "1:00 PM" }
+];
+
+const gameList = document.getElementById("games");
+games.forEach(game => {
+    const li = document.createElement("li");
+    li.style.margin = "10px 0";
+    li.style.padding = "10px";
+    li.style.border = "1px solid #ddd";
+    li.style.borderRadius = "5px";
+    li.textContent = `${game.date} at ${game.time} vs ${game.opponent} at ${game.location}`;
+    gameList.appendChild(li);
+});
+
+function uploadVideo() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'video/*';
+    input.onchange = function(e) {
+        const file = e.target.files[0];
+        alert(`Video "${file.name}" selected! (Upload simulation)`);
+    };
+    input.click();
+}
+</script>
 </body>
 </html>
