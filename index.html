@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Botrus Sports Hub</title>
-<style>
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -13,45 +7,43 @@ body {
     position: relative;
     overflow-x: hidden;
 }
-body::before {
-    content: "B";  /* Changed from T to B for Botrus */
-    position: absolute;
-    width: 300px;
-    height: 150px;
-    background-color: #0066cc;
-    color: white;
-    font-size: 100px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: -1;
-    animation: slide 10s linear infinite;
-}
-@keyframes slide {
-    0% { left: -300px; }
-    100% { left: 100%; }
-}
-.nav-bar {
-    background-color: #333;
-    padding: 15px;
+
+.top-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/header-bg.jpg');
+    background-size: cover;
+    padding: 20px 0;
     color: white;
 }
-.nav-bar a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-}
-.game-list, .recap, .about-us {
+
+.game-list, .sponsor-player-top {
     margin: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
     position: relative;
 }
+
+.recap {
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.login-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 button {
-    padding: 12px 20px;
+    padding: 12px 24px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -59,74 +51,90 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 button:hover {
     background-color: #45a049;
 }
-.about-us p {
+
+.games-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.games-list {
+    flex: 2;
     text-align: left;
-    max-width: 800px;
-    margin: 15px auto;
-    line-height: 1.6;
 }
-</style>
-<body>
-<div class="nav-bar">
-    <a href="#home">Home</a>
-    <a href="#games">Games</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-</div>
 
-<h1>Botrus Sports Hub</h1>
-
-<div class="game-list">
-    <h2>Upcoming Games</h2>
-    <ul id="games" style="list-style: none; padding: 0;"></ul>
-    <button onclick="uploadVideo()">Upload Video</button>
-</div>
-
-<div class="recap">
-    <h2>Game Recap</h2>
-    <p id="score">Final Score: 5 - 3</p>
-    <p id="message">Winner: Tigers!</p>
-    <p id="sponsor">Sponsored by: Local Sports Shop</p>
-</div>
-
-<div class="about-us">
-    <h2>About Us</h2>
-    <p>Botrus Sports Hub was created to make managing sports clubs and associations easy and hassle-free. We understand that grassroots sports associations and clubs are predominantly run by volunteers, which is why our platform is designed to be simple, time-efficient, and intuitive.</p>
-    <p>Our platform connects players, parents, coaches, and local businesses into a vibrant community hub. From game scheduling to video highlights, we provide all the tools needed to create an engaging sports community.</p>
-    <p>Join us in building a stronger, more connected sports community!</p>
-</div>
-
-<script>
-const games = [
-    { date: "March 15, 2025", opponent: "Tigers", location: "Field A", time: "2:00 PM" },
-    { date: "March 22, 2025", opponent: "Lions", location: "Court B", time: "3:30 PM" },
-    { date: "March 29, 2025", opponent: "Eagles", location: "Field C", time: "1:00 PM" }
-];
-
-const gameList = document.getElementById("games");
-games.forEach(game => {
-    const li = document.createElement("li");
-    li.style.margin = "10px 0";
-    li.style.padding = "10px";
-    li.style.border = "1px solid #ddd";
-    li.style.borderRadius = "5px";
-    li.textContent = `${game.date} at ${game.time} vs ${game.opponent} at ${game.location}`;
-    gameList.appendChild(li);
-});
-
-function uploadVideo() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'video/*';
-    input.onchange = function(e) {
-        const file = e.target.files[0];
-        alert(`Video "${file.name}" selected! (Upload simulation)`);
-    };
-    input.click();
+.map-container {
+    flex: 1;
 }
-</script>
-</body>
-</html>
+
+.map-container img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* Modals */
+.terms-modal, .login-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    max-width: 500px;
+    width: 90%;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Team Chat */
+.team-chat {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#teamChatBox {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#teamChatInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .games-container {
+        flex-direction: column;
+    }
+    
+    .map-container {
+        width: 100%;
+    }
+}
